@@ -273,6 +273,14 @@ void CControlUI::SetPos(RECT rc, bool bNeedInvalidate)
 	}
 	else {
 		m_rcItem = rc;
+		if (m_cxyFixed.cx && (m_rcItem.right - m_rcItem.left >= m_cxyFixed.cx))
+		{
+			m_rcItem.right = m_rcItem.left + m_cxyFixed.cx;
+		}
+		if (m_cxyFixed.cy && (m_rcItem.bottom - m_rcItem.top >= m_cxyFixed.cy))
+		{
+			m_rcItem.bottom = m_rcItem.top + m_cxyFixed.cy;
+		}
 	}
     if( m_pManager == NULL ) return;
 

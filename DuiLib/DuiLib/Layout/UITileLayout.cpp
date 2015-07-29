@@ -60,14 +60,6 @@ namespace DuiLib
 	void CTileLayoutUI::SetPos(RECT rc, bool bNeedInvalidate)
 	{
 		CControlUI::SetPos(rc, bNeedInvalidate);
-		if (m_rcItem.right - m_rcItem.left >= m_cxyFixed.cx)
-		{
-			m_rcItem.right = m_rcItem.left + m_cxyFixed.cx;
-		}
-		if (m_rcItem.bottom - m_rcItem.top >= m_cxyFixed.cy)
-		{
-			m_rcItem.bottom = m_rcItem.top + m_cxyFixed.cy;
-		}
 		rc = m_rcItem;
 
 		// Adjust for inset
