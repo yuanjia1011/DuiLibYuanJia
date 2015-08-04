@@ -637,10 +637,11 @@ bool CPaintManagerUI::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LR
             // This is the time where we layout the controls on the form.
             // We delay this even from the WM_SIZE messages since resizing can be
             // a very expensize operation.
-            if( m_bUpdateNeeded ) {
+            if( m_bUpdateNeeded ) {			//一般窗口需要更新的时候是在初始化的时候调用
                 m_bUpdateNeeded = false;
                 RECT rcClient = { 0 };
-                ::GetClientRect(m_hWndPaint, &rcClient);
+				::GetWindowRect(m_hWndPaint, &rcClient);			//获取窗口的大小
+				::MapWindowRect(HWND_DESKTOP, m_hWndPaint, &rcClient);		//从屏幕坐标矩形映射到绘图窗口坐标矩形
                 if( !::IsRectEmpty(&rcClient) ) {
                     if( m_pRoot->IsUpdateNeeded() ) {
                         if( m_hDcOffscreen != NULL ) ::DeleteDC(m_hDcOffscreen);
